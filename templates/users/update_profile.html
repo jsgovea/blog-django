@@ -15,10 +15,6 @@
             <form action="{% url 'update_profile' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
-                {% if form.errors %}
-                    <p>{{ form.errors }}</p>
-                {% endif %}
-
                 <div class="media">
                     {% if profile.picture %}
                         <img src="{{ profile.picture.url }}" class="rounded-circle" height="50" />
@@ -26,26 +22,58 @@
                         <img src="{% static 'img/default-profile.png' %}" class="rounded-circle" height="50" />
                     {% endif %}
 
-                    <div class="media-body">
+
+				        <div class="media-body">
                         <h5 class="ml-4">@{{ user.username }}</h5>
-                        <p class="ml-4"><input type="file" name="picture" required="true"></p>
+
+                        <p class="ml-4"><input type="file" name="picture" ></p>
                     </div>
                 </div>
+
+                {% for error in form.picture.errors  %}
+                    <div class="alert alert-danger">
+                        <b>Imagen: </b>{{ error }}
+                    </div>
+                {% endfor %}
+
+                <span  style="font-size: 15px;"><a target="_blank" href="https://starwarsavatar.com/">Haz tu avatar</a></span>
+
 
                 <hr><br>
 
                 <div class="form-group">
                     <label>Red Social</label>
-                    <input
-                        class="form-control"
-                        type="url"
+                     <input
+                        class="form-control {% if form.website.errors %}is-invalid{% endif %}"
+                        type="text"
                         name="website"
-                        placeholder="Website"
-                        value="{{ profile.website }}"
+                        placeholder="Link"
+                        value="{% if form.errors %}{{ form.website.value }}{% else %}{{ profile.website }}{% endif %}"
                     />
+                    <div class="invalid-feedback">
+                        {% for error in form.website.errors %}
+                            {{ error }}
+                        {% endfor%}
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block mt-5">Actualizar información</button>
+
+          <div class="">
+            <label>Acerca de mi</label>
+            <textarea 
+            class="form-control {% if form.biography.errors %}is-invalid{% endif %}" 
+            name="biography"
+            >{% if form.errors %}{{ form.biography.value }}{% else %}{{ profile.biography }}{% endif %}{{ profile.biography }}</textarea>
+
+              <div class="invalid-feedback">
+                        {% for error in form.biography.errors %}
+                            {{ error }}
+                        {% endfor%}
+                    </div>
+          </div>
+
+                <button type="submit" class="btn btn-primary btn-block mt-5">Actualizar información
+                </button>
             </form>
         </div>
     </div>

@@ -19,6 +19,7 @@ def update_profile(request):
 
             profile.website = data['website']
             profile.picture = data['picture']
+            profile.biography = data['biography']
             profile.save()
 
             return redirect('update_profile')
