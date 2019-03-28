@@ -10,6 +10,8 @@ class Post(models.Model):
 
    	title = models.CharField(max_length=255, verbose_name='Título')
 
+   	description = models.TextField(max_length=250, verbose_name='Descripción')
+
    	photo = models.ImageField(upload_to='posts/photo', verbose_name='Imagen')
 
    	created = models.DateTimeField(auto_now_add=True)
