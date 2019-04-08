@@ -7,29 +7,16 @@
 
 {% block container %}
 	
-	{% if error %}
-		<p class="alert alert-danger">{{ error }}</p>		
-	{% endif %}
 
 	<h1 class="text-center">Registro</h1>
 
 	<form method="POST" action="{% url "signup" %}">
 		{% csrf_token %}
-
+	
 	<div class="form-group">
-
-		<input type="text" placeholder="Nombre Usuario" name="username" required="true" class="form-control">
+		{{ form.as_p }}
 	</div>
-
-	<div class="form-group">
-		<input type="password" placeholder="Contraseña" name="password" required="true" class="form-control">
-	</div>
-
-
-	<div class="form-group">
-
-		<input type="email" placeholder="Correo" name="email" required="true" class="form-control">
-	</div>
+		
 		
 		<button class="btn btn-primary btn-block mt-5" type="submit">Registrarse</button>
 

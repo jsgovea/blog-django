@@ -53,21 +53,23 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
-
+    
 
 def signup(request):
+    """Sign up view."""
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
-        else: 
-            form = SignUpForm()
-        return render(
-            request = request,
-            template_name = 'users/signup.html',
-            context = {'form': form},
-            )
+    else:
+        form = SignUpForm()
+
+    return render(
+        request=request,
+        template_name='users/signup.html',
+        context={'form': form}
+    )
 
 
 
