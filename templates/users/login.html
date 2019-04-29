@@ -13,7 +13,7 @@
 
 	<h1 class="text-center">Inicio de Sesión</h1>
 
-	<form method="POST" action="{% url "login" %}">
+	<form method="POST" action="{% url "users:login" %}">
 		{% csrf_token %}
 
 	<div class="form-group">
@@ -28,6 +28,6 @@
 		<button class="btn btn-primary btn-block mt-5" type="submit">Iniciar Sesión</button>
 	</form>
 
-	<p class="mt-4">¿No tienes cuenta? <a href="{% url 'signup' %}">Registrate aquí</a></p>
+	<p class="mt-4">¿No tienes cuenta? <a href="{% url 'users:signup' %}">Registrate aquí</a></p>
 
 {% endblock %}

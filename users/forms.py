@@ -50,5 +50,5 @@ class SignUpForm(forms.Form):
 
 class ProfileForm(forms.Form):
     website = forms.URLField(max_length=100, required=True)
-    biography = forms.CharField(max_length=100, required=False)
+    biography = forms.CharField(max_length=180, required=False)
     picture = forms.ImageField()
